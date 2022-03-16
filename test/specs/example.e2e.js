@@ -1,24 +1,25 @@
-const dashpage = require('../pageobjects/dash.page');
 const LoginPage = require('../pageobjects/login.page');
-//const SecurePage = require('../pageobjects/secure.page');
+const coodash = require('../pageobjects/dash.page');
+const ctdash = require('../pageobjects/ctdash.page');
+const prac = require('../pageobjects/addprac.page');
+const SecurePage = require('../pageobjects/secure.page');
 
-describe('OrthoCatapult Application', () => {
+describe('My Login application', () => {
     it('should login with valid credentials', async () => {
-        await LoginPage.open();
+        browser.url(`http://qa.practicecatapult.com`)
+        await LoginPage.login('ctadmin', 'Qb@123');
+        
+    });
 
-        await LoginPage.login('tc@clt.com', 'tc');
-        expect(browser).toHaveTitle('OrthoCatapult');
-        //await expect(SecurePage.flashAlert).toBeExisting();
-        //await expect(SecurePage.flashAlert).toHaveTextContaining(
-            //'You logged into a secure area!');
+    it('navigate to practice management', async () => {
+        browser.getUrl();
+        await ctdash.add_pract(); 
+        
     });
     
-    it('click add patient button from dashboard', async () => {
-       browser.getUrl();
-       await dashpage.add();
+    it('navigate to practice management', async () => {
+        browser.getUrl();
+        await prac.pract();
     });
 
-
 });
-
-
